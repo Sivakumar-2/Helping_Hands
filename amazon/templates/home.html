@@ -1,0 +1,299 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Webpage</title>
+  <style>
+   /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f7;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 60px;
+  background-color: #f9fafb;
+  color: #c62828;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 18px;
+  font-weight: bold;
+  animation: slideDown 0.8s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation */
+nav {
+  background-color: lightblue;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+  color: black;
+  margin: 0 15px;
+  font-family: cursive;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+nav a:hover {
+  color: red;
+}
+
+/* Underline hover effect */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: red;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  min-height: 500px;
+}
+
+/* Left column */
+.left-column {
+  width: 250px;
+  background-color: #444;
+  height: 500px;
+}
+
+.left-column:hover {
+  background-color: #333;
+}
+
+/* Main section */
+main {
+  flex: 1;
+  padding: 5px;
+  background-color: #555;
+  height: 500px;
+}
+
+main:hover {
+  background-color: #666;
+}
+
+/* Content box */
+.content {
+  background-color: #ffffff;
+  padding: 40px 80px;
+  line-height: 1.8;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+img {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Image hover */
+img:hover {
+  transform: scale(1.03);              /* very slight zoom */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+/* Content hover effect */
+.content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Content text */
+.content h2 {
+  color: #b71c1c;
+  margin-bottom: 10px;
+  margin-top: 25px;
+}
+
+.content p {
+  font-size: 16px;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.content ul,
+.content ol {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.content li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* Footer */
+footer {
+  background-color: lightgrey;
+  color: black;
+  text-align: center;
+  padding: 1em;
+}
+
+footer:hover {
+  background-color: #d6d6d6;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+   <h1>
+  HELPING HANDS
+  </h1>
+
+
+
+  </header>
+
+  <nav>
+    <a href="{% url 'reg' %}">Register</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+    <a href="{% url 'login' %}">Login</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+    <a href="{% url 'admin_login' %}">Admin</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+    <a href="{% url 'group' %}">Search</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+    <a href="{% url 'aboutus' %}">About Us</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+  </nav>
+
+  <div class="container">
+    <div class="left-column">
+      <img src= "{% static 'images/side2.jpg' %}" width="100%" height="100%">
+    </div>
+
+    <main>
+      <img src= "{% static 'images/main.jpg' %}" width="100%" height="100%">
+        </main>
+  </div>
+  <section class="content">
+
+  <h2>What is Blood Donation?</h2>
+  <p>
+    Blood donation is a voluntary and safe medical process in which a healthy person donates
+    blood to help patients who need transfusions. Donated blood is stored in blood banks
+    and used during emergencies, surgeries, accidents, childbirth complications, and
+    treatment of serious diseases.
+  </p>
+
+  <h2>Importance of Blood Donation</h2>
+  <p>
+    Blood cannot be manufactured artificially. The only source of blood is healthy donors.
+    Every day, thousands of patients depend on blood transfusions to survive.
+    Regular blood donation helps hospitals maintain sufficient blood supply.
+  </p>
+
+  <h2>Who Needs Blood?</h2>
+  <ul>
+    <li>Accident and trauma victims</li>
+    <li>Patients undergoing major surgeries</li>
+    <li>Cancer patients receiving chemotherapy</li>
+    <li>Pregnant women during childbirth</li>
+    <li>Patients with blood disorders like anemia and thalassemia</li>
+  </ul>
+
+  <h2>Who Can Donate Blood?</h2>
+  <p>
+    A person can donate blood if they:
+  </p>
+  <ul>
+    <li>Are between 18 and 60 years of age</li>
+    <li>Weigh more than 50 kg</li>
+    <li>Are in good health</li>
+    <li>Do not have any infectious diseases</li>
+  </ul>
+
+  <h2>Benefits of Blood Donation</h2>
+  <ul>
+    <li>Helps save lives and support the healthcare system</li>
+    <li>Improves heart health by regulating iron levels</li>
+    <li>Free basic health check-up before donation</li>
+    <li>Creates social responsibility and awareness</li>
+  </ul>
+
+  <h2>Blood Groups and Compatibility</h2>
+  <p>
+    There are eight major blood groups: A+, A−, B+, B−, AB+, AB−, O+, and O−.
+    Blood compatibility is important to ensure safe transfusion.
+    O− is considered the universal donor, while AB+ is the universal recipient.
+  </p>
+
+  <h2>How Helping Hands Works</h2>
+  <ol>
+    <li>Donors register themselves on the platform</li>
+    <li>Patients or hospitals search for required blood group</li>
+    <li>System displays matching donors</li>
+    <li>Donor is contacted and blood is donated safely</li>
+  </ol>
+
+  <h2>Our Mission</h2>
+  <p>
+    Helping Hands is designed to bridge the gap between blood donors and patients.
+    Our mission is to ensure timely availability of blood, reduce emergency delays,
+    and save lives through technology.
+  </p>
+
+</section>
+
+
+
+<footer>
+  © 2025 Helping Hands – Blood Donation Management System <br>
+  📧 kumarsiva14727@gmail.com | 📞 9550825133
+</footer>
+
+</body>
+</html>

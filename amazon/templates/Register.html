@@ -1,0 +1,308 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register | Helping Hands</title>
+<style>
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background-color: #fff3e0;
+      color: #b71c1c;
+      font-weight: bold;
+      font-size: 24px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav {
+      background-color: #fafafa;
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      color: #1976d2;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0d47a1;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: #1976d2;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1000px;
+      margin: 20px auto;
+      gap: 20px;
+      align-items: stretch; /* Stretch children to same height */
+    }
+.left-column {
+  width: 300px;
+  height: 400px; /* fixed height */
+  background-color: #E0E8F0;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.left-column img {
+  width: 100%;
+  height: 100%; /* fill the column */
+  object-fit: cover; /* crop to fit */
+  border-radius: 8px;
+}
+
+    main {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td, th {
+      padding: 8px 5px;
+      vertical-align: top;
+    }
+
+    th {
+      text-align: left;
+      color: #b71c1c;
+      width: 200px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #b71c1c;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #d32f2f;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: #fafafa;
+      color: #555;
+      font-size: 14px;
+      border-top: 1px solid #ddd;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .left-column, main {
+        width: 100%;
+      }
+      .left-column img {
+        height: 250px; /* Limit height on mobile */
+      }
+    }
+</style>
+</head>
+<body>
+
+<header>HELPING HANDS</header>
+
+<nav>
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'aboutus' %}">About Us</a>
+</nav>
+
+<div class="container">
+  <div class="left-column">
+    <img src="{% static 'images/chatgpt.png' %}" alt="Donate">
+  </div>
+  <main>
+    {% if success %}
+      <div class="success">{{ success }}</div>
+    {% endif %}
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="{% url 'reg' %}">
+      {% csrf_token %}
+      <table>
+        <caption><h2>Register Here</h2></caption>
+
+        <tr>
+          <th>Donor Name</th>
+          <td>{{ form.DonorName }}</td>
+          <td class="error">{{ form.DonorName.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Username</th>
+          <td>{{ form.UserName }}</td>
+          <td class="error">{{ form.UserName.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Password</th>
+          <td>{{ form.Password }}</td>
+          <td class="error">{{ form.Password.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Confirm Password</th>
+          <td>{{ form.ConfirmPassword }}</td>
+          <td class="error">{{ form.ConfirmPassword.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Date of Birth</th>
+          <td>{{ form.DateOfBirth }}</td>
+          <td class="error">{{ form.DateOfBirth.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Gender</th>
+          <td colspan="2">{{ form.Gender }}</td>
+        </tr>
+
+        <tr>
+          <th>Profession</th>
+          <td colspan="2">{{ form.Profession }}</td>
+        </tr>
+
+        <tr>
+          <th>Bad Habits</th>
+          <td colspan="2">{{ form.BadHabits }}</td>
+          <td class="error">{{ form.BadHabits.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Blood Group</th>
+          <td colspan="2">{{ form.BloodGroup }}</td>
+        </tr>
+
+        <tr>
+          <th>Any Diseases</th>
+          <td>{{ form.Diseases }}</td>
+          <td class="error">{{ form.Diseases.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Had Recent Infection</th>
+          <td>{{ form.HadRecentInfection }}</td>
+          <td class="error">{{ form.HadRecentInfection.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Recent Infections</th>
+          <td>{{ form.RecentInfections }}</td>
+          <td class="error">{{ form.RecentInfections.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Location</th>
+          <td colspan="2">{{ form.Location }}</td>
+        </tr>
+
+        <tr>
+          <th>State</th>
+          <td colspan="2">{{ form.State }}</td>
+        </tr>
+
+        <tr>
+          <th>Mobile</th>
+          <td>{{ form.Mobile }}</td>
+          <td class="error">{{ form.Mobile.errors }}</td>
+        </tr>
+
+        <tr>
+          <th>Email</th>
+          <td colspan="2">{{ form.Email }}</td>
+        </tr>
+
+        <tr>
+          <td colspan="3" align="center"><input type="submit" value="Register"></td>
+        </tr>
+
+        <tr>
+          <td colspan="3" align="center">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </main>
+</div>
+
+<footer>
+  © 2025 Helping Hands – Blood Donation Management System <br>
+  📧 kumarsiva14727@gmail.com | 📞 9550825133
+</footer>
+
+</body>
+</html>

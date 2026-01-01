@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+ background-color: #c62828;
+background-color: #fff3e0;
+color: #b71c1c;
+<!--border-bottom: 3px solid #f44336;-->
+
+  height: 50px;
+    }
+
+    nav {
+      background-color: lightgrey;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: black;
+      margin: 0 15px;
+      font-family: cursive, bold;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+      background-color:#FF7F7F;
+      min-height: 400px;
+    }
+
+    footer {
+      background-color: lightgrey;
+      color: black;
+      padding: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header>
+    <h1>
+  HELPING HANDS
+  </h1>
+
+  </header>
+<nav>
+    <a href="{% url 'home' %}">Home</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+<!--    <a href="{% url 'reg' %}">Register</a>&emsp;&emsp;&emsp;&emsp;&emsp;-->
+<!--    <a href="{% url 'login' %}">Login</a>&emsp;&emsp;&emsp;&emsp;&emsp;-->
+    <a href="{% url 'group' %}">Search</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+    <a href="{% url 'logout' %}">Logout</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+<!--    <a href="{% url 'aboutus' %}">About Us</a>&emsp;&emsp;&emsp;&emsp;&emsp;-->
+  </nav>
+<main>
+ <h1 align="center">Welcome, Admin</h1>
+    <h3 align="center">Registered Donors</h3>
+    <table border="1" cellspacing="0" align="center" bgcolor="maroon" width="100%">
+            <tr bgcolor="biscuit">
+                <th>Donor ID</th>
+                <th>Donor Name</th>
+                <th>Username</th>
+                <th>DateOfBirth</th>
+                <th>Gender</th>
+                <th>Profession</th>
+                <th>Blood Group</th>
+                <th>Location</th>
+                <th>State</th>
+                <th>Mobile</th>
+                <th>Email</th>
+            </tr>
+
+        <tbody>
+            {% for d in data %}
+            <tr bgcolor="BD2440">
+                <td>{{ d.DonorID }}</td>
+                <td>{{ d.DonorName }}</td>
+                <td>{{ d.UserName }}</td>
+                <td>{{ d.DateOfBirth }}</td>
+                <td>{{ d.Gender }}</td>
+                <td>{{ d.Profession }}</td>
+                <td>{{ d.BloodGroup }}</td>
+                <td>{{ d.Location }}</td>
+                <td>{{ d.State }}</td>
+                <td>{{ d.Mobile }}</td>
+                <td>{{ d.Email }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  </main>
+<footer>
+    <p>Copy Rights- kumarsiva14727@gmail.com<br>
+      contact-9550825133<br>
+      All rights reserved.</p>
+  </footer>
+
+
+</body>
+</html>

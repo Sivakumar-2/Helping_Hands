@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | Helping Hands</title>
+<style>
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5; /* soft gray */
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        background-color: #ffffff; /* white header */
+        color: #333333;
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    nav {
+        background-color: #f0f0f0; /* light gray nav */
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #ff7f50; /* soft accent */
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .login-card {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login-card h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333333;
+    }
+
+    .login-card form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .login-card input[type="text"],
+    .login-card input[type="password"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+        transition: border-color 0.3s;
+    }
+
+    .login-card input[type="text"]:focus,
+    .login-card input[type="password"]:focus {
+        border-color: #ff7f50;
+        outline: none;
+    }
+
+    .login-card input[type="submit"] {
+        padding: 12px;
+        background-color: #ff7f50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .login-card input[type="submit"]:hover {
+        background-color: #ff6333;
+    }
+
+    .login-card .other-link {
+        text-align: center;
+    }
+
+    .login-card .other-link a {
+        text-decoration: none;
+        color: #ff7f50;
+    }
+
+    footer {
+        text-align: center;
+        background-color: #f0f0f0;
+        color: #333333;
+        padding: 15px 0;
+        border-top: 1px solid #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+        .login-card {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>HELPING HANDS</h1>
+</header>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'reg' %}">Register</a>
+    <a href="{% url 'aboutus' %}">About Us</a>
+</nav>
+
+<main>
+    <div class="login-card">
+        <h2>Admin Login</h2>
+        <form method="POST" action="{% url 'admin_login' %}" autocomplete="off">
+            {% csrf_token %}
+            {% if msg %}
+                <p style="color:red; text-align:center;">{{ msg }}</p>
+            {% endif %}
+            <input type="text" name="uname" placeholder="Username" required>
+            <input type="password" name="pwd" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <div class="other-link">
+                <a href="{% url 'login' %}">Login as Donor</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 Helping Hands | kumarsiva14727@gmail.com | 9550825133
+</footer>
+
+</body>
+</html>

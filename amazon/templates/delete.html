@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Donor</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+ background-color: #c62828;
+background-color: #fff3e0;
+color: #b71c1c;
+<!--border-bottom: 3px solid #f44336;-->
+
+  height: 50px;
+    }
+
+    nav {
+      background-color: lightgrey;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: black;
+      margin: 0 15px;
+      font-family: cursive, bold;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 20px;
+      background-color:red;
+      min-height: 400px;
+    }
+    #form {
+    align: center;
+    background-color: #F5F5F5;
+    border: 2px solid black;
+    width:90%;
+    padding: 20px;
+    border-radius: 10px;
+    color: #333333;
+    }
+
+    footer {
+      background-color: #333;
+      color: black;
+      padding: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header>
+    <h1>
+  HELPING HANDS
+  </h1>
+
+  </header>
+<nav>
+    <a href="{% url 'home' %}">Home</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+<!--    <a href="{% url 'reg' %}">Register</a>&emsp;&emsp;&emsp;&emsp;&emsp;-->
+<!--    <a href="{% url 'login' %}">Login</a>&emsp;&emsp;&emsp;&emsp;&emsp;-->
+    <a href="{% url 'group' %}">Search</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+<!--    <a href="{% url 'aboutus' %}">About Us</a>&emsp;&emsp;&emsp;&emsp;&emsp;-->
+  </nav>
+<main>
+
+<h2>Check Donor by Mobile Number</h2>
+
+<form action="{% url 'delete' %}" method="get" id="form">
+    {% csrf_token %}
+    <table width="100%">
+        <tr>
+            <th>Mobile&emsp;&emsp;&emsp;:<input type="text" name="mobile" ></th>
+        </tr>
+        <tr>
+            <th><input type="submit" value="Check"></th>
+        </tr>
+    </table>
+</form>
+
+{% if blood %}
+<h3>Donor Details</h3>
+<table border="1" cellspacing="0">
+    <tr bgcolor="thickgrey">
+        <th>DONAR ID</th>
+        <th>DONAR NAME</th>
+        <th>DateOfBirth</th>
+        <th>GENDER</th>
+        <th>HOBBIES</th>
+        <th>BLOOD GROUP</th>
+        <th>Location</th>
+        <th>STATE</th>
+        <th>MOBILE</th>
+        <th>EMAIL</th>
+        <th>ACTION</th>
+    </tr>
+
+    {% for i in blood %}
+    <tr bgcolor="lightgrey">
+        <td>{{ i.DonorID }}</td>
+        <td>{{ i.DonorName }}</td>
+        <td>{{ i.DateOfBirth }}</td>
+        <td>{{ i.Gender }}</td>
+        <td>{{ i.Hobbies }}</td>
+        <td>{{ i.BloodGroup }}</td>
+        <td>{{ i.Location }}</td>
+        <td>{{ i.State }}</td>
+        <td>{{ i.Mobile }}</td>
+        <td>{{ i.Email }}</td>
+        <td>
+            <form action="{% url 'delrec' i.DonorID %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% elif did %}
+<p style="color: red;">No donor found with ID {{ did }}</p>
+{% endif %}
+      </main>
+<footer>
+    <p>Copy Rights- kumarsiva14727@gmail.com<br>
+      contact-9550825133<br>
+      All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

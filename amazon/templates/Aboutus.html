@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us | Helping Hands</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      background-color: #fff3e0;
+      color: #b71c1c;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      background-color: #e0e0e0;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #000;
+      margin: 0 18px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      color: #b71c1c;
+      text-decoration: underline;
+    }
+
+    .banner {
+      width: 100%;
+      height: 320px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 38px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .content {
+      max-width: 950px;
+      margin: 35px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .content h2 {
+      color: #b71c1c;
+      margin-bottom: 10px;
+    }
+     .banner-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+    .content h3 {
+      color: #d9534f;
+      margin-top: 25px;
+    }
+
+    .content p {
+      font-size: 16px;
+      margin-top: 10px;
+      text-align: justify;
+    }
+
+    footer {
+      background-color: #e0e0e0;
+      color: #000;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    @media(max-width: 768px) {
+      .banner {
+        height: 220px;
+        font-size: 28px;
+        padding: 10px;
+      }
+
+      .content {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>HELPING HANDS</header>
+
+<nav>
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'reg' %}">Register</a>
+  <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'aboutus' %}">About Us</a>
+</nav>
+
+<!-- Banner 1 -->
+<div class="banner" style="background-image: url('{% static 'images/banner1.jpg' %}');">
+
+</div>
+
+<div class="content">
+  <h2>About Helping Hands</h2>
+
+  <h3>Who We Are</h3>
+  <p>
+    Helping Hands is a blood donation management system created to connect voluntary blood donors
+    with patients and hospitals in need. Our platform ensures quick access to life-saving blood
+    during emergencies through a simple and reliable digital process.
+  </p>
+
+  <h3>Our Mission</h3>
+  <p>
+    Our mission is to reduce blood shortages by encouraging voluntary blood donation and building
+    a trusted donor community. We aim to create awareness, improve accessibility, and ensure
+    transparency in blood donation services.
+  </p>
+
+  <h3>Our Vision</h3>
+  <p>
+    We envision a world where no life is lost due to lack of blood. Helping Hands strives to
+    become a dependable platform that supports hospitals, donors, and patients through
+    technology-driven solutions.
+  </p>
+</div>
+
+<!-- Banner 2 -->
+<div class="banner" style="background-image: url('{% static 'images/banner2.jpg' %}');">
+
+</div>
+
+<div class="content">
+  <h3>How Helping Hands Works</h3>
+  <p>
+    Donors register with their blood group and contact details. When a blood request is generated,
+    the system identifies matching donors and enables quick communication with hospitals or
+    patients in urgent need.
+  </p>
+
+  <h3>Why Blood Donation Matters</h3>
+  <p>
+    Blood donation is a selfless act that saves lives. Every unit of donated blood can help
+    accident victims, surgical patients, cancer patients, and children suffering from blood
+    disorders.
+  </p>
+</div>
+
+<!-- Banner 3 -->
+<div class="banner-img">
+  <img src="{% static 'images/man3.jpg' %}" alt="Blood Donation Banner">
+</div>
+
+<div class="content">
+  <h3>Benefits of Blood Donation</h3>
+  <p>
+    Blood donation is not only life-saving for patients but also beneficial for donors.
+    When you donate blood, your body naturally starts producing new blood cells,
+    helping improve overall blood circulation and maintaining healthy oxygen levels.
+  </p>
+
+  <p>
+    Regular blood donation helps reduce excess iron stored in the body, which may lower
+    the risk of heart-related conditions. It also supports liver health and helps in
+    maintaining balanced iron levels.
+  </p>
+
+  <p>
+    Donating blood stimulates the production of fresh red blood cells, improving
+    blood quality and supporting a healthy immune system. Many donors report feeling
+    refreshed and energized after donation.
+  </p>
+
+  <h3>Additional Health Advantages for Donors</h3>
+  <p>
+    ✔ Encourages new blood cell generation <br>
+    ✔ Helps maintain healthy iron balance <br>
+    ✔ Supports better heart health <br>
+    ✔ Improves overall blood circulation <br>
+    ✔ Provides a free basic health check during donation
+  </p>
+
+  <h3>Become a Lifesaver</h3>
+  <p>
+    By joining Helping Hands as a donor or volunteer, you take part in a life-saving mission.
+    Your small act of kindness helps others heal while also supporting your own well-being.
+    Donate blood regularly and be a hero in someone’s life.
+  </p>
+</div>
+
+<footer>
+  © 2025 Helping Hands – Blood Donation Management System <br>
+  📧 kumarsiva14727@gmail.com | 📞 9550825133
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Helping Hands</title>
+   <style>
+/* Reset & base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f1f5f9; /* light gray */
+}
+
+/* Wrapper for max-width */
+.wrapper {
+    max-width: 1350px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header */
+header {
+    background-color: #4169E1;
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 15px 0;
+    border-radius: 6px 6px 0 0;
+    text-align: center;
+}
+
+/* Navigation */
+nav {
+    background-color: #B0C4DE;
+    text-align: center;
+    padding: 12px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+nav a {
+    color: #2F4F4F;
+    margin: 0 18px;
+    text-decoration: none;
+    font-weight: 500;
+    padding-bottom: 4px;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+nav a:hover {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+}
+
+/* Container */
+.container {
+    flex: 1;
+    padding: 20px;
+    background-color:#F0F8FF;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow-x: auto; /* scroll if table too wide */
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* optional for readability */
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+}
+
+th {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:hover {
+    background-color: #e0ecff;
+}
+
+/* Action buttons */
+a.action-btn {
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+a.update-btn {
+    background-color: #22c55e;
+}
+
+a.update-btn:hover {
+    background-color: #16a34a;
+}
+
+a.delete-btn {
+    background-color: #ef4444;
+}
+
+a.delete-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Footer */
+footer {
+    background-color: #A9A9A9;
+    color:  #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.85rem;
+    border-radius: 0 0 6px 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    th, td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            HELPING HANDS
+        </div>
+    </header>
+
+    <nav>
+        <div class="wrapper">
+            <a href="{% url 'display' %}">Display</a>
+            <a href="{% url 'group' %}">Search</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="wrapper container">
+        <main>
+         <h2 style="text-align: center; color: #e67e22;">Welcome {{ request.session.username }}</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Donor ID</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Profession</th>
+                        <th>Blood Group</th>
+                        <th>Location</th>
+                        <th>State</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in data %}
+                    <tr>
+                        <td>{{ d.DonorID }}</td>
+                        <td>{{ d.DonorName }}</td>
+                        <td>{{ d.UserName }}</td>
+                        <td>{{ d.Password }}</td>
+                        <td>{{ d.DateOfBirth }}</td>
+                        <td>{{ d.Gender }}</td>
+                        <td>{{ d.Profession }}</td>
+                        <td>{{ d.BloodGroup }}</td>
+                        <td>{{ d.Location }}</td>
+                        <td>{{ d.State }}</td>
+                        <td>{{ d.Mobile }}</td>
+                        <td>{{ d.Email }}</td>
+                        <td><a href="{% url 'update2' d.DonorID %}" class="action-btn update-btn">Update</a></td>
+                        <td><a href="{% url 'delrec' d.UserName %}" class="action-btn delete-btn">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <footer>
+        <div class="wrapper">
+        © 2025 Helping Hands – Blood Donation Management System <br>
+        📧 kumarsiva14727@gmail.com | 📞 9550825133
+        </div>
+    </footer>
+</body>
